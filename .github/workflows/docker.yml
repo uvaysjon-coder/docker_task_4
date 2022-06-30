@@ -41,7 +41,7 @@ jobs:
       
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        uses: docker/metadata-action@v2
         with:
           images: |
             my-docker-hub-namespace/my-docker-hub-repository
@@ -53,4 +53,8 @@ jobs:
           context: ./docker_files/extra
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+<<<<<<< HEAD
           labels: ${{ steps.meta.outputs.labels }}
+=======
+          labels: ${{ steps.meta.outputs.labels }}
+>>>>>>> 08cc9384c92444b4ace1aeb1daada55dbf88fdd5
