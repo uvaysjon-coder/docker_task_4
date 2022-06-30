@@ -279,6 +279,108 @@ jobs:
 </pre>
 
 
+## Task 5
+
+-Create docker-compose file. Deploy a few docker containers via one docker-compose file:
+-first image - your docker image from the previous step. 5 nodes of the first image should be run;
+-second image - any java application;
+-last image - any database image (mysql, postgresql, mongo or etc.).
+-Second container should be run right after a successful run of a database container.
+
+### 1 Firstly I've installed docker compose. After that I've created docker-compose file "docker_compose.yaml for mandatory task:
+
+
+<pre>
+version: "3"
+
+services:
+    extra-app:
+        image: uzcoder/extra_task
+        scale: 5
+        ports:
+            - "5000"
+    tomcat:
+        container_name: tomcat
+        image: tomcat
+        ports:
+            - "8888:8080"
+    db:
+        image: postgres
+        environment:
+            - POSTGRES_DB=extra-db
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+    
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+        depends_on:
+            - extra-app
+        ports:
+            - "4000:4000"
+</pre>
+
+### 2.I ran the docker compose file by following command:
+
+<pre>
+docker-compose -f docker_compose.yml up
+</pre>
+![alt text](./screenshots/Picture19.png)
+![alt text](./screenshots/Picture20.png)
+
+### EXTRA 1. Use env files to configure each service.
+
+Environment file:
+<pre>
+export POSTGRES_DB=extra-db
+export POSTGRES_USER=postgres
+export POSTGRES_PASSWORD=postgres
+</pre>
+
+<pre>
+version: "3"
+
+services:
+    extra-app:
+        image: uzcoder/extra_task
+        scale: 5
+        ports:
+            - "5000"
+    tomcat:
+        container_name: tomcat
+        image: tomcat
+        ports:
+            - "8888:8080"
+    db:
+        image: postgres
+        environment:
+            - POSTGRES_DB=${POSTGRES_DB}
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        env_file:
+            - .env
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+        depends_on:
+            - extra-app
+        ports:
+            - "4000:4000"
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
