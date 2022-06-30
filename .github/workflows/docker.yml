@@ -53,8 +53,5 @@ jobs:
           context: ./docker_files/extra
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-<<<<<<< HEAD
           labels: ${{ steps.meta.outputs.labels }}
-=======
-          labels: ${{ steps.meta.outputs.labels }}
->>>>>>> 08cc9384c92444b4ace1aeb1daada55dbf88fdd5
+
