@@ -179,6 +179,8 @@ curl http://localhost:7777
 
 ![alt text](./screenshots/Picture11.png)
 
+## Task 3
+
 ### EXTRA 3.1.1 For creating docker image I used clear basic image (ubuntu)
 
 <pre>
@@ -211,6 +213,7 @@ EXPOSE 80
 ![alt text](./screenshots/Picture14.png)
 ![alt text](./screenshots/Picture15.png)
 
+### Task 4
 
 ### 4.1 I pushed docker image to docker hub and wrote description
 
