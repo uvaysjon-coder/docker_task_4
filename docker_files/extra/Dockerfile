@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
 ENV DEVOPS="Changed"
 RUN apt-get -y update
 RUN apt-get -y install apache2
