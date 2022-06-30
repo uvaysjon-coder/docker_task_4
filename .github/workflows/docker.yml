@@ -10,7 +10,7 @@ name: Docker_Publish
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
 
