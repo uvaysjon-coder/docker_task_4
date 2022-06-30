@@ -233,15 +233,22 @@ docker push uzcoder/extra_task
 
 ### 4.2 I wrote github action to integrate my docker image, my github repository and create an automatic deployment for each push.
 
-### ci.yml
+### docker_action.yml
 
 <pre>
+#-------------------------------------
+# Task 4 Extra
+#
+# Integrate your docker image and your github repository. 
+#
+# Create an automatic deployment for each push.
+#-------------------------------------
 
-name: Build and Publish
+name: Docker_Publish
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
 
@@ -261,26 +268,14 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Login to Github Packages
-        uses: docker/login-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_PAT }}
-      
-      - name: Build image and push to Docker Hub and GitHub Container Registry
-        uses: docker/build-push-action@v2
-        with:
-          context: ./Task4/docker/extra
-          tags: |
-            elbrus/exadel_practices:latest 
-            ghcr.io/kh-elbrus/exadel_practices/docker-extra-app:latest
-          push: ${{ github.ref == 'refs/heads/master' }}
-
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+          context: ./docker_files/extra
+          push: true
+          tags: uzcoder/extra_task:latest
 </pre>
 
 
