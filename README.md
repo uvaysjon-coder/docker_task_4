@@ -145,6 +145,8 @@ curl http://localhost:49157/
 
 ![alt text](./screenshots/Picture7.png)
 
+## Task 3
+
 ### 3.1 I created Docker file for building docker image an ran it.
 
 
@@ -179,7 +181,6 @@ curl http://localhost:7777
 
 ![alt text](./screenshots/Picture11.png)
 
-## Task 3
 
 ### EXTRA 3.1.1 For creating docker image I used clear basic image (ubuntu)
 
